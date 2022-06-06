@@ -269,6 +269,8 @@ def Visualise_Folders(file_path_br, file_extension, EP_len_label): #Create a vis
         flabel = file_name[:EP_len_label] #Identify the reduced filename
         mask = (df['file_name'] == flabel) #Identify the file name in df
         x=np.sum(mask) #Check sum of True values in mask (should be 1)
+        if i == 1:
+            ax0 = plt.subplot(length_of_directory,1,i, sharex=ax0)
         if x == 0: #If sum is zero
             flabel = int(flabel) #Save it as an integer
             mask = (df['file_name'] == flabel) #Identify the file name in df
