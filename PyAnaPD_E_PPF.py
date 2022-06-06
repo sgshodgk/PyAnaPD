@@ -216,7 +216,9 @@ def Visualise_Folders_og(file_extension, EP_len_label): #Create a visual image o
     for file_name, c in zip(filenames, cs): #For each filename
         length_of_directory = (len(filenames)) #Determine number of files with the extension
         two_theta, intensity = Read_File_Extension_Data(file_name, file_extension) #Read in data from file
-        plt.subplot(length_of_directory, 1, i) #Create subplots, rows=no.of.files, columns=1, current subplot = i 
+        if i == 0:
+            ax0 = plt.subplot(length_of_directory, 1, i)
+        plt.subplot(length_of_directory, 1, i, sharex=ax0) #Create subplots, rows=no.of.files, columns=1, current subplot = i 
         plt.plot(two_theta, intensity, label=file_name[:EP_len_label], color=c, linewidth=0.3) #Plot data with a label, random colour and a linewidth
         plt.legend(prop={'size': 5}, loc='right') #Fix size of legend
         plt.yticks([]) #Remove y axis as all data is normalised
@@ -239,7 +241,9 @@ def Visualise_Folders_br(file_extension, EP_len_label): #Create a visual image o
     for file_name, c in zip(filenames, cs): #For each filename
         length_of_directory = (len(filenames)) #Determine number of files with the extension
         max_theta, BR_intensity, mean_BI = Read_Data(file_name) #Read in data from file
-        plt.subplot(length_of_directory, 1, i) #Create subplots, rows=no.of.files, columns=1, current subplot = i 
+        if i == 0:
+            ax0 = plt.subplot(length_of_directory, 1, i)
+        plt.subplot(length_of_directory, 1, i, sharex=ax0) #Create subplots, rows=no.of.files, columns=1, current subplot = i 
         plt.plot(max_theta, BR_intensity, label=file_name[:EP_len_label], color=c, linewidth=0.3) #Plot data with a label, random colour and a linewidth
         plt.legend(prop={'size': 5}, loc='right') #Fix size of legend
         plt.yticks([]) #Remove y axis as all data is normalised
